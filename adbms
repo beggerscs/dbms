@@ -38,16 +38,7 @@ INCREMENT BY 2
 MAXVALUE 100
 MINVALUE 1
 CYCLE CACHE 10 ORDER;
-In this example:
-• START WITH 1 specifies that the sequence should start with the value 1.
-• INCREMENT BY 2 specifies that the sequence should increment by 2 for each next value.
-• MAXVALUE 100 specifies the maximum value the sequence can reach (in this case, 100).
-• MINVALUE 1 specifies the minimum value for the sequence.
-• CYCLE means that the sequence will cycle back to the MINVALUE after reaching the
-MAXVALUE.
-• CACHE 10 specifies that Oracle should cache 10 sequence numbers for better
-performance.
-• ORDER ensures that the sequence numbers are generated in order.
+
 
 Example 2: Creating a Simple Sequence with NOCYCLE and NOCACHE
 
@@ -57,10 +48,7 @@ START WITH 1000
 INCREMENT BY 1
 MAXVALUE 9999
 NOCYCLE NOCACHE;
-In this example, NOCYCLE ensures that the sequence does not cycle back to the MINVALUE
-after reaching the MAXVALUE, and NOCACHE specifies that no values are cached.
-Creating and Using Sequences for Tables
-You can use sequences to generate unique values for columns in tables, such as primary keys.
+
 Here's an example of creating a table with a sequence-generated primary key:
 -- Create a table with a sequence-generated primary key
 CREATE TABLE employees (employee_id NUMBER PRIMARY KEY,
@@ -115,8 +103,8 @@ END;
 
 
 
-Q.4) Writing PL/SQL Blocks with basic programming constructs for following Iterative Structure: a.
-While-loop Statements b. For-loop Statements
+Q.4) Writing PL/SQL Blocks with basic programming constructs for following Iterative Structure:
+a.While-loop Statements  b. For-loop Statements
 
 Using a While-Loop Statement:
 
@@ -131,10 +119,7 @@ END LOOP;
 END;
 /
 In this PL/SQL block:
-1. We declare a variable counter and initialize it to 1.
-2. We use a WHILE loop to iterate as long as counter is less than or equal to 5.
-3. Inside the loop, we print the value of counter using DBMS_OUTPUT.PUT_LINE.
-4. We increment counter by 1 in each iteration.
+
 Using a For-Loop Statement:
 -- PL/SQL Block with a FOR-loop
 DECLARE
@@ -200,18 +185,14 @@ BEGIN
 new_procedure;
 END;
 /
-In this example:
-• We first create an empty procedure named empty_procedure.
-• Then, we replace it with a new procedure named new_procedure that prints a message.
-• Finally, we call the new_procedure from an anonymous PL/SQL block.
+
 
 b. Create a Stored Procedure and Call It:
 sqlCopy code
 -- Create a stored procedure CREATE OR REPLACE PROCEDURE print_message AS BEGIN
 DBMS_OUTPUT.PUT_LINE('Hello, world!'); END; / -- Call the stored procedure BEGIN
 print_message; END; /
-Here, we create a stored procedure named print_message that prints a simple message, and
-then we call the procedure from an anonymous PL/SQL block.
+
 
 c. Define a Procedure to Insert Data:
 -- Create a table for demonstration
@@ -269,11 +250,7 @@ BEGIN
 message := greet('John'); -- Call the function
 DBMS_OUTPUT.PUT_LINE(message);
 END; /
-In this example:
-• We define a function named greet that takes a name as input and returns a greeting
-message.
-• We call the greet function with the name 'John' and display the result using
-DBMS_OUTPUT.PUT_LINE.
+
 
 b. Define and Use Function in Select Clause:
 -- Define a function to calculate the square of a number
@@ -285,10 +262,7 @@ RETURN num * num;
 END; /
 -- Use the function in a SELECT statement
 SELECT employee_name, calculate_square(salary) AS square_salary FROM employees;
-In this example:
-• We define a function calculate_square that calculates the square of a number.
-• We use the calculate_square function in a SELECT statement to calculate the square of
-the salary column for each employee.
+
 
 c. Call Function in DBMS_OUTPUT.PUT_LINE:
 -- Define a function to concatenate two strings
@@ -300,8 +274,7 @@ END; / -- Call the function and display the result using DBMS_OUTPUT
 BEGIN
 DBMS_OUTPUT.PUT_LINE(concat_strings('John', 'Doe'));
 END; /
-In this example, we define a function concat_strings that concatenates two strings and then call
-it within DBMS_OUTPUT.PUT_LINE to display the result.
+.
 
 d. Recursive Function:
 PL/SQL allows recursive function calls. Here's a simple example of a recursive function to
@@ -322,8 +295,7 @@ BEGIN
 END;/
 result := factorial(5); -- Call the recursive function
 DBMS_OUTPUT.PUT_LINE('Factorial of 5 is ' || result);
-In this example, the factorial function calls itself recursively to calculate the factorial of a
-number.
+
 
 e. Count Employees from a Function and Return Value:
 -- Define a function to count employees in a department
@@ -340,8 +312,7 @@ BEGIN
 END;/
 count := count_employees(101);
 DBMS_OUTPUT.PUT_LINE('Number of employees in department 101: ' || count);
-In this example, we define a function count_employees to count employees in a specified
-department and return the count.
+.
 
 f. Call Function and Store the Return Value to a Variable:
 -- Define a function to calculate the sum of two numbers
@@ -374,12 +345,6 @@ IF :NEW.emp_salary < 30000 THEN
 :NEW.emp_salary := 30000; -- Set a minimum salary
 END IF;
 END; /
-In this example:
-• We create a table named employees with columns for employee ID, name, and salary.
-• We create a BEFORE INSERT trigger named before_insert_trigger on the employees
-table.
-• Inside the trigger, we check if the salary being inserted is less than 30,000 and, if so, set
-it to a minimum of 30,000 before the insertion takes place.
 
 2. Creating an AFTER UPDATE Trigger:
 
@@ -390,11 +355,7 @@ AFTER UPDATE ON employees FOR EACH ROW BEGIN
 INSERT INTO audit_log (action, emp_id, old_salary, new_salary)
 VALUES ('UPDATE', :OLD.emp_id, :OLD.emp_salary, :NEW.emp_salary);
 END; /
-In this example:
-• We create an AFTER UPDATE trigger named after_update_trigger on the employees
-table.
-• Inside the trigger, we log the update action to an audit_log table, capturing the
-employee ID, old salary, and new salary.
+
 
 3. Creating a BEFORE DELETE Trigger:
 
@@ -428,10 +389,7 @@ DBMS_OUTPUT.PUT_LINE('Name: ' || emp_name || ', Salary: ' || emp_salary);
 -- Display employee data
 END LOOP;
 END; /
-In this example:
-• We use an implicit cursor in the form of a FOR loop to retrieve data from the employees
-table for employees with a salary greater than 50,000.
-• Inside the loop, we assign values from the cursor to variables and then display the
+
 employee data using DBMS_OUTPUT.PUT_LINE.
 Explicit Cursor Example:
 Explicit cursors are declared and managed explicitly by the developer. Here's an example of an
@@ -503,9 +461,7 @@ DBMS_OUTPUT.PUT_LINE('Result: ' || v_result); ;
 EXCEPTION WHEN ZERO_DIVIDE THEN -- Handle the predefined ZERO_DIVIDE exception
 DBMS_OUTPUT.PUT_LINE('Division by zero is not allowed.');
 END;
-In this example, we attempt to divide v_num1 by zero (v_num2). Since division by zero is not
-allowed, a predefined exception called ZERO_DIVIDE is raised. We catch this exception in the
-EXCEPTION section and handle it by displaying a custom error message.
+
 
 b. Handling User-Defined Exceptions:
 DECLARE
@@ -522,9 +478,7 @@ EXCEPTION WHEN NegativeNumberException THEN
 -- Handle the user-defined exception
 DBMS_OUTPUT.PUT_LINE('Negative numbers are not allowed.');
 END;
-In this example, we define a user-defined exception called NegativeNumberException and
-associate it with Oracle error code -20001. If v_num is negative, we explicitly raise this
-exception. We then catch and handle the user-defined exception in the EXCEPTION section.
+
 
 c. Handling Redeclared Predefined Exceptions:
 DECLARE
